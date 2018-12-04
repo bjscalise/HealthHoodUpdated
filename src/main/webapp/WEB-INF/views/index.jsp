@@ -25,7 +25,7 @@
 
 <h1>Hello</h1>
 
-<form action = "yelp">
+<form action = "results">
 
 <input type = "text" placeholder = "Enter address" name="userSearch">
 

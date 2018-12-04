@@ -1,18 +1,19 @@
 package com.healthhood.HealthHood.Controller;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.healthhood.HealthHood.Entity.Business;
 import com.healthhood.HealthHood.Entity.BusinessResults;
+import com.healthhood.HealthHood.Entity.HealthHoodService;
+
 
 
 
@@ -21,6 +22,9 @@ public class BusinessController {
     
     @Value("${yelp.key}")
     private String yelpHelp;
+    
+    @Autowired
+	HealthHoodService HHS;
     
     @RequestMapping("/")
     public ModelAndView index() {
@@ -32,28 +36,60 @@ public class BusinessController {
     @RequestMapping("yelp")
     public ModelAndView yelpApi(@RequestParam("userSearch") String userSearch) {
         
-        ModelAndView mv = new ModelAndView("yelp");
-        HttpHeaders header = new HttpHeaders();
-        header.add("Authorization", "Bearer oAovmku6u2EAhNeZyDtB7gwCeNWE_OQCGDy6q_enyGhX3Y4-ZL-6OmjDC2yi51ZmThAM8La1XBgFwezSGvdqbDkeEiZHmOFjj_E9oR8RCqZGQXz18hTvtM6gBEYBXHYx");
-        header.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-        HttpEntity<String> entity = new HttpEntity<>("parameters", header);
-        RestTemplate rt = new RestTemplate();
-
-
-        ResponseEntity<BusinessResults> response = rt.exchange("https://api.yelp.com/v3/businesses/search?&radius=1609&categories=fitness&location=" + userSearch, HttpMethod.GET, entity, BusinessResults.class);
-        ResponseEntity<BusinessResults> response1 = rt.exchange("https://api.yelp.com/v3/businesses/search?&radius=1609&categories=grocery&categories=farmersmarket&categories=organic_stores&location=" + userSearch, HttpMethod.GET, entity, BusinessResults.class);
-        ResponseEntity<BusinessResults> response2 = rt.exchange("https://api.yelp.com/v3/businesses/search?&radius=1609&categories=juicebars&categories=vegetarian&categories=vegan&location=" + userSearch, HttpMethod.GET, entity, BusinessResults.class);
+    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);        
+        ModelAndView mv = new ModelAndView("yelp", brMap);
+        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
+        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
+        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
         
-        BusinessResults bR = response.getBody();
-        BusinessResults bR1 = response1.getBody();
-        BusinessResults bR2 = response2.getBody();
+        mv.addObject("fitnessResults", gymRec);
+        mv.addObject("groceryResults", Groc);
+        mv.addObject("otgResults", OTG);
         
-   
-        mv.addObject("yelpResults", bR.getResults());
-        mv.addObject("foodResults", bR1.getResults());
-        mv.addObject("otgResults", bR2.getResults());
         return mv;
         
+    }
+    
+    @RequestMapping("results")
+    public ModelAndView indexCalc(@RequestParam("userSearch") String userSearch) {
+    	
+    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
+    	int numGR = brMap.get("fitnessResults").getResults().size();
+    	int numGroc = brMap.get("groceryResults").getResults().size();
+    	int numOTG = brMap.get("otgResults").getResults().size();
+
+    	int grocMax = 5;
+    	int fitMax = 5;
+    	int otgMax = 10;
+    	
+    	int grocIndex = (numGroc / grocMax);
+    	int grIndex = (numGR / fitMax);
+    	int otgIndex = (numOTG / otgMax);
+    	
+    	double h2I = ((grocIndex * 0.3) + (grIndex * 0.5) + (otgIndex * 0.2));
+    	 
+    	if (h2I > 1.0) {
+    		 h2I = 1.0;
+    	 } else if (h2I >= 0.9 && h2I < 1.0) {
+    		 h2I = 5;
+    	 }else if(h2I >= 0.8 && h2I < 0.89) {
+    		 h2I = 4;
+    	 }else if(h2I >= 0.7 && h2I < 0.79) {
+    		 h2I = 3;
+    	 }else if(h2I >= 0.6 && h2I < 0.69) {
+    		 h2I = 2;
+    	 }else if(h2I >= 0.5 && h2I < 0.59){
+    		 h2I = 1;
+    	 }else if (h2I < 0.5) {
+    		 h2I = 0;
+    	 }
+    	
+    	
+    	
+    	ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
+    	
+    	return mv;
+    	
     }
 
 }
