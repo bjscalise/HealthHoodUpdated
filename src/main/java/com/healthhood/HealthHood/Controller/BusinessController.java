@@ -6,14 +6,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.healthhood.HealthHood.Entity.Address;
 import com.healthhood.HealthHood.Entity.Business;
 import com.healthhood.HealthHood.Entity.BusinessResults;
 import com.healthhood.HealthHood.Entity.HealthHoodService;
-
+import com.healthhood.HealthHood.Entity.User;
+import com.healthhood.HealthHood.repo.AddressRepository;
+import com.healthhood.HealthHood.repo.SavedSearchRepository;
+import com.healthhood.HealthHood.repo.UserRepository;
 
 
 
@@ -26,6 +31,19 @@ public class BusinessController {
     @Autowired
 	HealthHoodService HHS;
     
+    @Autowired
+    UserRepository userRepo;
+    
+    @Autowired
+    AddressRepository addRepo;
+    
+    @Autowired
+    SavedSearchRepository ssRepo;
+    
+    private User user; 
+    
+    String scoreMessage;
+    
     @RequestMapping("/")
     public ModelAndView index() {
         
@@ -33,25 +51,8 @@ public class BusinessController {
         
     }
     
-//    @RequestMapping("yelp")
-//    public ModelAndView yelpApi(@RequestParam("userSearch") String userSearch) {
-//        
-//    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);        
-//        ModelAndView mv = new ModelAndView("yelp", brMap);
-//        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
-//        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
-//        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
-//        
-//        mv.addObject("fitnessResults", gymRec);
-//        mv.addObject("groceryResults", Groc);
-//        mv.addObject("otgResults", OTG);
-//        
-//        return mv;
-//        
-//    }
-    String scoreMessage;
-//    @RequestMapping("results")
-    public double indexCalc(String userSearch) {
+
+    public int indexCalc(String userSearch) {
     	
     	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
     	int numGR = brMap.get("fitnessResults").getResults().size();
@@ -87,21 +88,20 @@ public class BusinessController {
             scoreMessage="This is not the best option to live to maintain a healthy lifestyle. A Health Hood Index of 1 means that fitness centers, grocery stores, and healthy fast food options are scarce and not many are within 1 mile of the given location.";
         }else if (h2I < 0.5) {
             h2I = 0;
-            scoreMessage="This is the worst possible option to live to maintain a healthy lifestyle. A Health Hood Index of 0 means that this area is a healthy food desert and does not have any fitness centers, grocery stores, or healthy fast food options within 1 mile of the given location.";
+            scoreMessage="This is the worst possible option to live to maintain a healthy lifestyle. A Health Hood Index of 0 means that this area is a healthy food desert and has 3 or less fitness centers, grocery stores, or healthy fast food options within 1 mile of the given location.";
         }
     	
-//    	ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
-    	
-    	return h2I;
+    	return (int) h2I;
     	
     }
     
     @RequestMapping("results")
     public ModelAndView showAllResults(@RequestParam("userSearch") String userSearch) {
+    	
     	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
     	
-    	double h2I = indexCalc(userSearch);
-        ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
+    	int h2i = indexCalc(userSearch);
+        ModelAndView mv = new ModelAndView("results", "indexResults", h2i);
         
        
         ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
@@ -113,8 +113,20 @@ public class BusinessController {
         mv.addObject("groceryResults", Groc);
         mv.addObject("otgResults", OTG);
         mv.addObject("message", scoreMessage);
+        
+        Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
 
+        Address address = new Address(userSearch, h2i, id);
+        addRepo.save(address);
     	
     	return mv;
     }
+    
+    @RequestMapping("/beginsearch")
+	public ModelAndView addNewuser(@RequestParam("email") String email) {
+		user = new User(email);
+		userRepo.save(user);
+		String confirm = "Thank you! Lets begin searching addresses.";
+		return new ModelAndView("search-address", "search", confirm);
+	}
 }

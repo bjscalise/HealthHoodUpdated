@@ -20,60 +20,18 @@
 
 <div class = "container">
 
-<h1>Yelp Results</h1>
+<h1>Please enter an address for which you'd like an H2I</h1> 
 
 
-<table class ="table">
-
-    <c:forEach var = "b" items = "${yelpResults}">
-    
-    <tr>
-    
-    <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
-
-
-</tr>
-</c:forEach>
-
-</table>
-
-<table class ="table">
-
-    <c:forEach var = "b" items = "${foodResults}">
-    
-    <tr>
-    
-    <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
-
-
-</tr>
-</c:forEach>
-
-</table>
-
-<table class ="table">
-
-    <c:forEach var = "b" items = "${otgResults}">
-    
-    <tr>
-    
-    <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
-
-
-</tr>
-</c:forEach>
-
-</table>
+${search}
  
+<form action = "results">
+<input type="hidden" name="userid" value="${userid}"> <br>
+<input type = "text" placeholder = "Enter address" name="userSearch">
+
+<input type = "submit" name = "Submit" class = "btn btn-primary">
+
+</form> 
 
 </div>
 

@@ -4,39 +4,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="savedsearches")
-public class Address {
+@Table(name = "savedseaches")
+public class SavedSearch {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer addressid;
 	private String address;
 	private Integer h2i;
-	private Integer userid;
 	
-	public Address() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@ManyToOne
+    @JoinColumn(name="userid", insertable = false, updatable = false)
+	private Integer userid;
 
-	public Address(Integer addressid, String address, Integer h2i, Integer userid) {
+	public SavedSearch(Integer addressid, String address, Integer h2i, Integer userid) {
 		super();
 		this.addressid = addressid;
 		this.address = address;
 		this.h2i = h2i;
 		this.userid = userid;
 	}
-
-	public Address(String address, Integer h2i, Integer userid) {
+	
+	public SavedSearch(String address, Integer h2i, Integer userid) {
 		super();
 		this.address = address;
 		this.h2i = h2i;
 		this.userid = userid;
 	}
-	
+
+	public SavedSearch() {
+	}
 
 	public Integer getAddressid() {
 		return addressid;
@@ -72,9 +74,8 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [addressid=" + addressid + ", address=" + address + ", h2i=" + h2i + ", userid=" + userid + "]";
+		return "SavedSearch [addressid=" + addressid + ", address=" + address + ", h2i=" + h2i + ", userid=" + userid
+				+ "]";
 	}
-	
-	
 
 }

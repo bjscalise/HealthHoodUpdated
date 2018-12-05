@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Results</title>
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-gJWVjz180MvwCrGGkC4xE5FjhWkTxHIR/+GgT8j2B3KKMgh6waEjPgzzh7lL7JZT" crossorigin="anonymous">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,19 +24,21 @@
 <h2>Your Health Hood Index (H2I) is:</h2>
 <br>
 <br>
-${indexResults} <br>
+${indexResults}/5 <br>
 
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">See Why</a>
+<a class="btn btn-primary" data-toggle="collapse" href="#areaResults" role="button" aria-expanded="false" aria-controls="areaResults">See Results</a>
 
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-   ${message }
+   ${message}
   </div>
 
 
 
-<%-- <a href="yelp">What's in your Area?</a> 
-<div class = "container">
+
+<div class = "collapse" id="areaResults">
+<div class = "card card-body">
 <h1>In Your Area</h1> 
 <h3>Fitness Centers</h3>
 <table class ="table">
@@ -100,8 +102,9 @@ ${indexResults} <br>
 </tr>
 </tbody>
 </c:forEach>
-</table> --%> 
- 
+</table> 
+</div>
+</div>
 </div>
 </div>
 </body>

@@ -1,7 +1,6 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +22,20 @@
 
 
 
-<h1>Hello</h1>
+<h1>Welcome to the Health Hood App</h1>
 
-<form action = "results">
+<p>To begin finding Health Hood Indexes (H2I) for addresses you search, <br>
+ please share your email address so that we can track all of your searches for you to view later:</p>
 
-<input type = "text" placeholder = "Enter address" name="userSearch">
+<form action = "beginsearch">
+
+<input type = "text" placeholder = "Email Address" name="email">
 
 <input type = "submit" name = "Submit" class = "btn btn-primary">
 
 </form>
+
+
 
 
 </div>

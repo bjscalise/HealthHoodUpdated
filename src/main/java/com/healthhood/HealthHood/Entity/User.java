@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userid;
 	private String email;
+	
+	@OneToMany(mappedBy = "userdetails")
 	private ArrayList<Address> savedsearches;
 	
 	public User() {
@@ -27,11 +30,18 @@ public class User {
 		this.savedsearches = savedsearches;
 	}
 	
-	public User(String email, String userpassword, ArrayList<Address> savedsearches) {
+	public User(String email, ArrayList<Address> savedsearches) {
 		super();
-		this.userid = userid;
+		
 		this.email = email;
 		this.savedsearches = savedsearches;
+	}
+	
+	
+
+	public User(String email) {
+		super();
+		this.email = email;
 	}
 
 	public Integer getUserid() {
@@ -42,14 +52,14 @@ public class User {
 		this.userid = userid;
 	}
 
-	public String getUsername() {
+
+	public String getEmail() {
 		return email;
 	}
 
-	public void setUsername(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public ArrayList<Address> getSavedsearches() {
 		return savedsearches;
