@@ -33,63 +33,81 @@ public class BusinessController {
         
     }
     
-    @RequestMapping("yelp")
-    public ModelAndView yelpApi(@RequestParam("userSearch") String userSearch) {
-        
-    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);        
-        ModelAndView mv = new ModelAndView("yelp", brMap);
-        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
-        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
-        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
-        
-        mv.addObject("fitnessResults", gymRec);
-        mv.addObject("groceryResults", Groc);
-        mv.addObject("otgResults", OTG);
-        
-        return mv;
-        
-    }
+//    @RequestMapping("yelp")
+//    public ModelAndView yelpApi(@RequestParam("userSearch") String userSearch) {
+//        
+//    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);        
+//        ModelAndView mv = new ModelAndView("yelp", brMap);
+//        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
+//        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
+//        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
+//        
+//        mv.addObject("fitnessResults", gymRec);
+//        mv.addObject("groceryResults", Groc);
+//        mv.addObject("otgResults", OTG);
+//        
+//        return mv;
+//        
+//    }
     
-    @RequestMapping("results")
-    public ModelAndView indexCalc(@RequestParam("userSearch") String userSearch) {
+//    @RequestMapping("results")
+    public double indexCalc(String userSearch) {
     	
     	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
     	int numGR = brMap.get("fitnessResults").getResults().size();
     	int numGroc = brMap.get("groceryResults").getResults().size();
     	int numOTG = brMap.get("otgResults").getResults().size();
 
-    	int grocMax = 5;
-    	int fitMax = 5;
-    	int otgMax = 10;
+    	int grocPoints = 5;
+    	int gymRecPoints = 5;
+    	int otgPoints = 10;
     	
-    	int grocIndex = (numGroc / grocMax);
-    	int grIndex = (numGR / fitMax);
-    	int otgIndex = (numOTG / otgMax);
+    	int grocIndex = (numGroc / grocPoints);
+        int grIndex = (numGR / gymRecPoints);
+        int otgIndex = (numOTG / otgPoints);
+        
+        double h2I = ((grIndex * 0.3) + (grocIndex * 0.5) + (otgIndex * 0.2));
+        
+        if (h2I > 1.0) {
+            h2I = 1.0;
+        } else if (h2I >= 0.9 && h2I < 1.0) {
+            h2I = 5;
+        }else if(h2I >= 0.8 && h2I < 0.89) {
+            h2I = 4;
+        }else if(h2I >= 0.7 && h2I < 0.79) {
+            h2I = 3;
+        }else if(h2I >= 0.6 && h2I < 0.69) {
+            h2I = 2;
+        }else if(h2I >= 0.5 && h2I < 0.59){
+            h2I = 1;
+        }else if (h2I < 0.5) {
+            h2I = 0;
+        }
     	
-    	double h2I = ((grocIndex * 0.3) + (grIndex * 0.5) + (otgIndex * 0.2));
-    	 
-    	if (h2I > 1.0) {
-    		 h2I = 1.0;
-    	 } else if (h2I >= 0.9 && h2I < 1.0) {
-    		 h2I = 5;
-    	 }else if(h2I >= 0.8 && h2I < 0.89) {
-    		 h2I = 4;
-    	 }else if(h2I >= 0.7 && h2I < 0.79) {
-    		 h2I = 3;
-    	 }else if(h2I >= 0.6 && h2I < 0.69) {
-    		 h2I = 2;
-    	 }else if(h2I >= 0.5 && h2I < 0.59){
-    		 h2I = 1;
-    	 }else if (h2I < 0.5) {
-    		 h2I = 0;
-    	 }
+//    	ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
     	
-    	
-    	
-    	ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
-    	
-    	return mv;
+    	return h2I;
     	
     }
+    
+    @RequestMapping("results")
+    public ModelAndView showAllResults(@RequestParam("userSearch") String userSearch) {
+    	Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
+    	
+    	double h2I = indexCalc(userSearch);
+        ModelAndView mv = new ModelAndView("results", "indexResults", h2I);
+        
+       
+        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
+        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
+        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
+        
+        
+        mv.addObject("fitnessResults", gymRec);
+        mv.addObject("groceryResults", Groc);
+        mv.addObject("otgResults", OTG);
 
+    	
+    	return mv;
+    }
 }
