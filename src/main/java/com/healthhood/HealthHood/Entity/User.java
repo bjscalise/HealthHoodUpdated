@@ -17,7 +17,7 @@ public class User {
 	private Integer userid;
 	private String email;
 	
-	@OneToMany(mappedBy = "userdetails")
+//	@OneToMany(mappedBy = "addressid")
 	private ArrayList<Address> savedsearches;
 	
 	public User() {

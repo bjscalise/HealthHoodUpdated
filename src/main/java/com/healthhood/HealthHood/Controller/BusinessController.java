@@ -17,7 +17,7 @@ import com.healthhood.HealthHood.Entity.BusinessResults;
 import com.healthhood.HealthHood.Entity.HealthHoodService;
 import com.healthhood.HealthHood.Entity.User;
 import com.healthhood.HealthHood.repo.AddressRepository;
-import com.healthhood.HealthHood.repo.SavedSearchRepository;
+//import com.healthhood.HealthHood.repo.SavedSearchRepository;
 import com.healthhood.HealthHood.repo.UserRepository;
 
 
@@ -37,8 +37,8 @@ public class BusinessController {
     @Autowired
     AddressRepository addRepo;
     
-    @Autowired
-    SavedSearchRepository ssRepo;
+//    @Autowired
+//    SavedSearchRepository ssRepo;
     
     private User user; 
     
@@ -114,9 +114,9 @@ public class BusinessController {
         mv.addObject("otgResults", OTG);
         mv.addObject("message", scoreMessage);
         
-        Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
+//        Integer id = userRepo.findByEmail(user.getEmail()).getUserid();  NOTE: changed addressesPOJO to include user instead of userid
 
-        Address address = new Address(userSearch, h2i, id);
+        Address address = new Address(userSearch, h2i, user);
         addRepo.save(address);
     	
     	return mv;

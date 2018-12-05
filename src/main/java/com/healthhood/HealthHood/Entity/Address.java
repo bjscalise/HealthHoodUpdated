@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +16,16 @@ public class Address {
 	private Integer addressid;
 	private String address;
 	private Integer h2i;
-	private Integer userid;
+	
+	@ManyToOne
+	private User userid;
 	
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(Integer addressid, String address, Integer h2i, Integer userid) {
+	public Address(Integer addressid, String address, Integer h2i, User userid) {
 		super();
 		this.addressid = addressid;
 		this.address = address;
@@ -30,7 +33,7 @@ public class Address {
 		this.userid = userid;
 	}
 
-	public Address(String address, Integer h2i, Integer userid) {
+	public Address(String address, Integer h2i, User userid) {
 		super();
 		this.address = address;
 		this.h2i = h2i;
@@ -62,11 +65,11 @@ public class Address {
 		this.h2i = h2i;
 	}
 
-	public Integer getUserid() {
+	public User getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(User userid) {
 		this.userid = userid;
 	}
 
