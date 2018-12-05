@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,16 +15,17 @@ public class Address {
 	private Integer addressid;
 	private String address;
 	private Integer h2i;
+	private Integer userid;
 	
-	@ManyToOne
-	private User userid;
+//	@ManyToOne
+//	private User userid;
 	
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(Integer addressid, String address, Integer h2i, User userid) {
+	public Address(Integer addressid, String address, Integer h2i, Integer userid) {
 		super();
 		this.addressid = addressid;
 		this.address = address;
@@ -33,7 +33,7 @@ public class Address {
 		this.userid = userid;
 	}
 
-	public Address(String address, Integer h2i, User userid) {
+	public Address(String address, Integer h2i, Integer userid) {
 		super();
 		this.address = address;
 		this.h2i = h2i;
@@ -64,20 +64,32 @@ public class Address {
 	public void setH2i(Integer h2i) {
 		this.h2i = h2i;
 	}
+	
 
-	public User getUserid() {
+//	public User getUserid() {
+//		return userid;
+//	}
+//
+//	public void setUserid(User userid) {
+//		this.userid = userid;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "Address [addressid=" + addressid + ", address=" + address + ", h2i=" + h2i + ", userid=" + userid + "]";
+//	}
+	
+	public Integer getUserid() {
 		return userid;
 	}
 
-	public void setUserid(User userid) {
+	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
 
 	@Override
 	public String toString() {
-		return "Address [addressid=" + addressid + ", address=" + address + ", h2i=" + h2i + ", userid=" + userid + "]";
+		return "Address [addressid=" + addressid + ", address=" + address + ", h2i=" + h2i + ", userid=" +  "]";
 	}
-	
-	
 
 }

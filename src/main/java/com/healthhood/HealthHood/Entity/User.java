@@ -18,7 +18,7 @@ public class User {
 	private String email;
 	
 //	@OneToMany(mappedBy = "addressid")
-	private ArrayList<Address> savedsearches;
+//	private ArrayList<Address> savedsearches;
 	
 	public User() {
 	}
@@ -27,14 +27,14 @@ public class User {
 		super();
 		this.userid = userid;
 		this.email = email;
-		this.savedsearches = savedsearches;
+		//this.savedsearches = savedsearches;
 	}
 	
 	public User(String email, ArrayList<Address> savedsearches) {
 		super();
 		
 		this.email = email;
-		this.savedsearches = savedsearches;
+		//this.savedsearches = savedsearches;
 	}
 	
 	
@@ -61,19 +61,23 @@ public class User {
 		this.email = email;
 	}
 
-	public ArrayList<Address> getSavedsearches() {
-		return savedsearches;
-	}
+//	public ArrayList<Address> getSavedsearches() {
+//		return savedsearches;
+//	}
+//
+//	public void setSavedsearches(ArrayList<Address> savedsearches) {
+//		this.savedsearches = savedsearches;
+//	}
 
-	public void setSavedsearches(ArrayList<Address> savedsearches) {
-		this.savedsearches = savedsearches;
-	}
-
+//	@Override
+//	public String toString() {
+//		return "User [userid=" + userid + ", email=" + email +  ", savedsearches=" + savedsearches + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", email=" + email +  ", savedsearches=" + savedsearches + "]";
+		return "User [userid=" + userid + ", email=" + email +  ", savedsearches=" +  "]";
 	}
-	
 	
 	
 }
