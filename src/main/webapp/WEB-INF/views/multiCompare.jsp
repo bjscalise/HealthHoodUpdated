@@ -16,22 +16,29 @@
 </head>
 <body>
 
-<center>
 <div class="container">
 <h2>Your Health Hood Index (H2I) is:</h2>
 <br>
 <br>
-${indexResults}/5 <br>
+${indexResults}
+
+${index1} /5 <br>
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">See Why</a>
 <a class="btn btn-primary" data-toggle="collapse" href="#areaResults" role="button" aria-expanded="false" aria-controls="areaResults">See Results</a>
+
+
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
    ${message}
    
    
   </div>
+  
 <div class = "collapse" id="areaResults">
 <div class = "card card-body">
+
+
+
 <h1>In Your Area</h1> 
 <h3>Fitness Centers</h3>
 <table class ="table">
@@ -47,13 +54,9 @@ ${indexResults}/5 <br>
    <tbody>
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}</td>
-    <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-    <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
@@ -72,13 +75,9 @@ ${indexResults}/5 <br>
   <tbody>  
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}}</td>
-    <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-   <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
@@ -97,22 +96,35 @@ ${indexResults}/5 <br>
 <tbody>    
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}</td>
-   <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-   <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
 </table> 
 </div>
 </div>
-${message2}
-<div class = "collapse" id="areaResults">
+
+
+
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">See Why</a>
+<a class="btn btn-primary" data-toggle="collapse" href="#areaResults2" role="button" aria-expanded="false" aria-controls="areaResults2">See Results</a>
+
+${index2}/5
+
+<div class="collapse" id="collapseExample2">
+  <div class="card card-body">
+   ${message2}
+   
+   
+  </div>
+  
+<div class = "collapse" id="areaResults2">
 <div class = "card card-body">
+
+<!-- table2 -->
+
 <h1>In Your Area</h1> 
 <h3>Fitness Centers</h3>
 <table class ="table">
@@ -128,13 +140,9 @@ ${message2}
    <tbody>
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}</td>
-    <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-   <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
@@ -153,13 +161,9 @@ ${message2}
   <tbody>  
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}</td>
-    <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-    <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
@@ -178,21 +182,19 @@ ${message2}
 <tbody>    
     <tr>
     <td>${b.name}</td>
-    <td>${b.location.city}, ${b.location.state}</td>
-    <td>
-    <c:forEach var = "c" items = "${b.categories}">
-   	 ${c.title}, ${c.alias} 
-    </c:forEach>
-    </td>
-    <td>${b.formattedDistance} <p>mi</p></td>
+    <td>${b.location}</td>
+    <td>${b.categories}</td>
+    <td>${b.distance * 0.000621371}</td>
 </tr>
 </tbody>
 </c:forEach>
 </table> 
+
+</div>
+</div>
+<!-- Table 2 end -->
 </div>
 </div>
 </div>
-</div>
-</center>
 </body>
 </html>

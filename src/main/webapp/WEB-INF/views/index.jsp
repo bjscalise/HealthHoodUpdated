@@ -27,7 +27,7 @@
 <p>To begin finding Health Hood Indexes (H2I) for addresses you search, <br>
  please share your email address so that we can track all of your searches for you to view later:</p>
 
-<form action = "options">
+<form action = "userValidate">
 
 <input type = "email" placeholder = "Email Address" name="email">
 
@@ -36,8 +36,8 @@
 </form>
 
 
-</center>
 
+</center>
 </div>
 
 

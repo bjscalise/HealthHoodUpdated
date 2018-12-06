@@ -58,6 +58,15 @@ public class BusinessController {
 		double numGR = brMap.get("fitnessResults").getResults().size();
 		double numGroc = brMap.get("groceryResults").getResults().size();
 		double numOTG = brMap.get("otgResults").getResults().size();
+
+//		double grocIndex = (numGroc / 20);
+//		double grIndex = (numGR / 20);
+//		double otgIndex = (numOTG / 20);
+		
+		  System.out.println(numGR + " "); 
+	      System.out.println(numGroc + " ");
+	      System.out.println(numOTG + " ");
+      
 	 
 	      double h2I = (((numGroc + numGR + numOTG)/60)*100);
 	
@@ -109,7 +118,7 @@ public class BusinessController {
 		return mv;
 	}
 	
-	@RequestMapping("/options")
+	@RequestMapping("/userValidate")
 	public ModelAndView searchOption(@RequestParam("email") String email) {
 		if (userRepo.findByEmail(email) != null) {
 			user = userRepo.findByEmail(email);
@@ -125,6 +134,77 @@ public class BusinessController {
 		
 		
 	}
+	
+	@RequestMapping("multipleadds")
+    public ModelAndView populateResults(@RequestParam("userSearch") String userSearch, @RequestParam("userSearch2") String userSearch2) {
+        Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
+        Map<String, BusinessResults> brMap2 = HHS.yelpApi(userSearch2);
+        int h2i = indexCalc(userSearch);
+        int h2iSecond = indexCalc(userSearch2);
+        
+
+        
+      String multH2I = "Here are your comparisons";
+      
+      
+
+        ModelAndView mv = new ModelAndView("multiCompare", "indexResults", multH2I);
+       
+        
+
+        
+        ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
+        ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
+        ArrayList<Business> OTG = brMap.get("otgResults").getResults();
+        ArrayList<Business> gymRec2 = brMap2.get("fitnessResults").getResults();
+        ArrayList<Business> Groc2 = brMap2.get("groceryResults").getResults();
+        ArrayList<Business> OTG2 = brMap2.get("otgResults").getResults();
+        
+        System.out.println("Still here??");
+        
+        mv.addObject("fitnessResults", gymRec);
+        mv.addObject("groceryResults", Groc);
+        mv.addObject("otgResults", OTG);
+        mv.addObject("fitnessResults2", gymRec2);
+        mv.addObject("groceryResults2", Groc2);
+        mv.addObject("otgResults2", OTG2);
+        mv.addObject("message", scoreMessage);
+        mv.addObject("index1", h2i);
+        mv.addObject("index2", h2iSecond);
+        mv.addObject("message2", scoreMessage);
+        
+        
+        System.out.println("Did we make it???");
+        
+        Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
+        Address address = new Address(userSearch, h2i, id);
+        addRepo.save(address);
+
+        System.out.println("not sure.");
+        
+//        Integer id2 = userRepo.findByEmail(user.getEmail()).getUserid();
+        Address address2 = new Address(userSearch2, h2iSecond, id);
+        addRepo.save(address2);
+        
+        
+        return mv;
+    }
+	
+	@RequestMapping("compare")
+	public ModelAndView compare() {
+
+		return new ModelAndView("compare");
+
+	}
+	
+	@RequestMapping("multiCompare")
+	public ModelAndView multiCompare() {
+
+		return new ModelAndView("multiCompare");
+
+	}
+	
+	
 
 
 }

@@ -64,7 +64,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	    }
 
 	    public void setDistance(Double distance) {
-	        this.distance = distance;
+	        this.distance = distance * 0.000621371;
+	    }
+	    
+	    public String getFormattedDistance() {
+	        return String.format("%.2f", getDistance());
 	    }
 
 	    @Override
