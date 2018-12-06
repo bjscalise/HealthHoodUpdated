@@ -19,6 +19,8 @@
 
 <body>
 
+<center>
+
 
 <div class="container">
 <h2>Your Health Hood Index (H2I) is:</h2>
@@ -107,5 +109,6 @@ ${indexResults}/5 <br>
 </div>
 </div>
 </div>
+</center>
 </body>
 </html>

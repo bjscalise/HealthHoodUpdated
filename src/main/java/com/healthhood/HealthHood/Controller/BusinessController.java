@@ -44,42 +44,39 @@ public class BusinessController {
 		return new ModelAndView("index");
 
 	}
+	
+	@RequestMapping("/search-address")
+	public ModelAndView addressPage() {
+
+		return new ModelAndView("search-address");
+
+	}
 
 	public int indexCalc(String userSearch) {
 
 		Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
-		int numGR = brMap.get("fitnessResults").getResults().size();
-		int numGroc = brMap.get("groceryResults").getResults().size();
-		int numOTG = brMap.get("otgResults").getResults().size();
-
-		int grocPoints = 5;
-		int gymRecPoints = 5;
-		int otgPoints = 10;
-
-		int grocIndex = (numGroc / grocPoints);
-		int grIndex = (numGR / gymRecPoints);
-		int otgIndex = (numOTG / otgPoints);
-
-		double h2I = ((grIndex * 0.3) + (grocIndex * 0.5) + (otgIndex * 0.2));
-
-		if (h2I > 1.0) {
-			h2I = 1.0;
-		} else if (h2I >= 0.9 && h2I < 1.0) {
+		double numGR = brMap.get("fitnessResults").getResults().size();
+		double numGroc = brMap.get("groceryResults").getResults().size();
+		double numOTG = brMap.get("otgResults").getResults().size();
+	 
+	      double h2I = (((numGroc + numGR + numOTG)/60)*100);
+	
+		if (h2I >= 81 && h2I <= 100) {
 			h2I = 5;
 			scoreMessage = "This is the healthiest neighborhood possible! A Health Hood index of 5 means that there are 5 or more fitness centers and grocery stores and 10 or more healthy fast food options within 1 mile of this address!";
-		} else if (h2I >= 0.8 && h2I < 0.89) {
+		} else if (h2I >= 61 && h2I <= 80) {
 			h2I = 4;
 			scoreMessage = "This is a fairly healthy neighborhood! A Health Hood Index of 4 means that there are multiple fitness centers, grocery stores, and healthy fast food options within 1 mile of this address.";
-		} else if (h2I >= 0.7 && h2I < 0.79) {
+		} else if (h2I >= 41 && h2I <= 60) {
 			h2I = 3;
 			scoreMessage = "This is a good neighborhood for health purposes. A Health Hood Index of 3 means that there are a few fitness centers, grocery stores, and healthy fast food options within 1 mile of this address.";
-		} else if (h2I >= 0.6 && h2I < 0.69) {
+		} else if (h2I >= 21 && h2I <= 40) {
 			h2I = 2;
 			scoreMessage = "This is not the healthiest neighborhood. A Health Hood Index of 2 means that while there are some fitness centers, grocery stores, and healthy fast food options within 1 mile of the location, there are not enough to support a healthy lifestyle.";
-		} else if (h2I >= 0.5 && h2I < 0.59) {
+		} else if (h2I >= 1 && h2I <= 20) {
 			h2I = 1;
 			scoreMessage = "This is not the best option to live to maintain a healthy lifestyle. A Health Hood Index of 1 means that fitness centers, grocery stores, and healthy fast food options are scarce and not many are within 1 mile of the given location.";
-		} else if (h2I < 0.5) {
+		} else if (h2I == 0) {
 			h2I = 0;
 			scoreMessage = "This is the worst possible option to live to maintain a healthy lifestyle. A Health Hood Index of 0 means that this area is a healthy food desert and has 3 or less fitness centers, grocery stores, or healthy fast food options within 1 mile of the given location.";
 		}
@@ -111,19 +108,23 @@ public class BusinessController {
 
 		return mv;
 	}
-
-	@RequestMapping("/beginsearch")
-	public ModelAndView addNewuser(@RequestParam("email") String email) {
-
+	
+	@RequestMapping("/options")
+	public ModelAndView searchOption(@RequestParam("email") String email) {
 		if (userRepo.findByEmail(email) != null) {
 			user = userRepo.findByEmail(email);
 			String welcome = "Welcome Back!";
-			return new ModelAndView("search-address", "search", welcome);
+			return new ModelAndView("options", "search", welcome);
 		} else {
 			user = new User(email);
 			userRepo.save(user);
 			String confirm = "Thank you! Lets begin searching addresses.";
-			return new ModelAndView("search-address", "search", confirm);
+			return new ModelAndView("options", "search", confirm);
 		}
+		
+		
+		
 	}
+
+
 }

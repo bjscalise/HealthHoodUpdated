@@ -20,6 +20,8 @@
 
 <div class = "container">
 
+<center>
+
 <h1>Please enter an address for which you'd like an H2I</h1> 
 
 
@@ -33,6 +35,7 @@ ${search}
 
 </form> 
 
+</center>
 </div>
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>Search Options</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link
     href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/journal/bootstrap.min.css"
@@ -22,19 +22,11 @@
 
 <center>
 
-<h1>Welcome to the Health Hood App</h1>
+<h1>Select Your Search Option</h1>
 
-<p>To begin finding Health Hood Indexes (H2I) for addresses you search, <br>
- please share your email address so that we can track all of your searches for you to view later:</p>
 
-<form action = "options">
-
-<input type = "email" placeholder = "Email Address" name="email">
-
-<input type = "submit" name = "Submit" class = "btn btn-primary">
-
-</form>
-
+<a href = "search-address" class = "btn btn-primary">Single Address</a>
+<a href = "#" class = "btn btn-primary" >Compare Addresses</a>
 
 </center>
 
