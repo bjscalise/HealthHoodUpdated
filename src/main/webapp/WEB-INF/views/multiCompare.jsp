@@ -15,7 +15,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<center>
 <div class="container">
 <h2>Your Health Hood Index (H2I) is:</h2>
 <br>
@@ -54,9 +54,13 @@ ${index1} /5 <br>
    <tbody>
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state }</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -75,9 +79,13 @@ ${index1} /5 <br>
   <tbody>  
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+   <td>${b.location.city}, ${b.location.state }</td>
+   <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -96,9 +104,13 @@ ${index1} /5 <br>
 <tbody>    
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state }</td>
+   <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -140,9 +152,13 @@ ${index2}/5
    <tbody>
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+   <td>${b.location.city}, ${b.location.state }</td>
+   <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -161,9 +177,13 @@ ${index2}/5
   <tbody>  
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state }</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -182,9 +202,13 @@ ${index2}/5
 <tbody>    
     <tr>
     <td>${b.name}</td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+   <td>${b.location.city}, ${b.location.state }</td>
+   <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+   <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -196,5 +220,6 @@ ${index2}/5
 </div>
 </div>
 </div>
+</center>
 </body>
 </html>
