@@ -11,16 +11,15 @@
     rel="stylesheet"
     integrity="sha384-5C8TGNupopdjruopVTTrVJacBbWqxHK9eis5DB+DYE6RfqIJapdLBRUdaZBTq7mE"
     crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="singlesearch.css">
     
 
 </head>
 <body>
 
-
+<center>
 
 <div class = "container">
-
-<center>
 
 <h1>Please enter an address for which you'd like an H2I</h1> 
 
@@ -29,18 +28,32 @@ ${search}
  
 <form action = "results">
 <input type="hidden" name="userid" value="${userid}"> <br>
-<input type = "text" placeholder = "Enter address" name="userSearch">
+<input type = "text" placeholder = "Enter Address" size="35" name="userSearch" required="true">
 
-<input type = "submit" name = "Submit" class = "btn btn-primary">
+<br>
+
+<input type = "submit" name = "Submit" class = "btn btn-light">
 
 </form> 
 
-</center>
 </div>
+
+</center>
+
+    <div class="footer">
+      <div class="container">
+         
+           <h5 id="copyright">&copy; HealthHood 2018</h5>
+           
+      </div>
+    </div>
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

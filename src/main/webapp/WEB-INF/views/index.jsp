@@ -12,15 +12,17 @@
     rel="stylesheet"
     integrity="sha384-5C8TGNupopdjruopVTTrVJacBbWqxHK9eis5DB+DYE6RfqIJapdLBRUdaZBTq7mE"
     crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="styles.css">  
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
-
 </head>
 <body>
 
-    
-<div class = "container">
+<center>   
 
-<center>
+<div class = "jumbotron" style="background: #00a86b !important" id="welcome">
+
+
 
 <h1>Welcome to the Health Hood App</h1>
 
@@ -29,19 +31,26 @@
 
 <form action = "userValidate">
 
-<input type = "email" placeholder = "Email Address" name="email">
+<input type = "email" placeholder = "Email Address" size="35" name="email" required="true">
 
-<input type = "submit" name = "Submit" class = "btn btn-primary">
+<br>
+
+<input type = "submit" name = "Submit" class = "btn btn-light">
 
 </form>
 
 
-
 </center>
+
 </div>
 
-
-
+    <div class="footer">
+      <div class="container">
+         
+           <h5 id="copyright">&copy; HealthHood 2018</h5>
+           
+      </div>
+    </div>
 
 
 

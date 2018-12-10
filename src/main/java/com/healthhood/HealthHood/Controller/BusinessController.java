@@ -105,7 +105,7 @@ public class BusinessController {
 		ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
 		ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
 		ArrayList<Business> OTG = brMap.get("otgResults").getResults();
-
+		System.out.println(gymRec);
 		mv.addObject("fitnessResults", gymRec);
 		mv.addObject("groceryResults", Groc);
 		mv.addObject("otgResults", OTG);
@@ -139,8 +139,7 @@ public class BusinessController {
     public ModelAndView populateResults(@RequestParam("userSearch") String userSearch, @RequestParam("userSearch2") String userSearch2) {
         Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
         Map<String, BusinessResults> brMap2 = HHS.yelpApi(userSearch2);
-        int h2i = indexCalc(userSearch);
-        int h2iSecond = indexCalc(userSearch2);
+       
         
 
         
@@ -150,8 +149,13 @@ public class BusinessController {
 
         ModelAndView mv = new ModelAndView("multiCompare", "indexResults", multH2I);
        
+        int h2i = indexCalc(userSearch);
+        String scoreMessage1 = scoreMessage;
+        mv.addObject("message", scoreMessage);
         
-
+        
+        int h2iSecond = indexCalc(userSearch2);
+        mv.addObject("message2", scoreMessage);
         
         ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
         ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
@@ -168,7 +172,6 @@ public class BusinessController {
         mv.addObject("fitnessResults2", gymRec2);
         mv.addObject("groceryResults2", Groc2);
         mv.addObject("otgResults2", OTG2);
-        mv.addObject("message", scoreMessage);
         mv.addObject("index1", h2i);
         mv.addObject("index2", h2iSecond);
         mv.addObject("message2", scoreMessage);
@@ -194,6 +197,13 @@ public class BusinessController {
 	public ModelAndView compare() {
 
 		return new ModelAndView("compare");
+
+	}
+	
+	@RequestMapping("newsearch")
+	public ModelAndView options() {
+		
+		return new ModelAndView("options");
 
 	}
 	

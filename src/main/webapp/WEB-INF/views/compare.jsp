@@ -10,26 +10,45 @@
     href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/journal/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-5C8TGNupopdjruopVTTrVJacBbWqxHK9eis5DB+DYE6RfqIJapdLBRUdaZBTq7mE"
-    crossorigin="anonymous">
+    crossorigin="anonymous"> 
+<link rel="stylesheet" type="text/css" href="compare.css">
+    
+
     
 </head>
 <body>
 
 <center>
-<div class = "container">
+
+
+<div class = "container" id="searchbody">
+
 <h1>Please enter the addresses for which you'd like an H2I</h1> 
 ${search}
  
 <form action = "multipleadds">
 <%-- <input type="hidden" name="userid" value="${userid}"> <br> --%>
-<input type = "text" placeholder = "Enter address" name="userSearch">
-<input type = "text" placeholder = "Enter address" name="userSearch2">
-<input type = "submit" name = "Submit" class = "btn btn-primary">
+<input type = "text" placeholder = "Enter address" name="userSearch" required="true">
+<input type = "text" placeholder = "Enter address" name="userSearch2" required="true">
+<br>
+<input type = "submit" name = "Submit" class = "btn btn-light">
 </form> 
 </div>
+</center>
+
+    <div class="footer">
+      <div class="container">
+         
+           <h5 id="copyright">&copy; HealthHood 2018</h5>
+           
+      </div>
+    </div>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</center>
+
+
 </body>
 </html>

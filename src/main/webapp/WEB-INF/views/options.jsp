@@ -12,25 +12,36 @@
     rel="stylesheet"
     integrity="sha384-5C8TGNupopdjruopVTTrVJacBbWqxHK9eis5DB+DYE6RfqIJapdLBRUdaZBTq7mE"
     crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="optionstyles.css">
+
     
 
 </head>
 <body>
 
-<center>
-    
-<div class = "container">
+<center>  
+
+<div class = "container" id="option">
 
 
 
 <h1>Select Your Search Option</h1>
 
 
-<a href = "search-address" class = "btn btn-primary">Single Address</a>
-<a href = "compare" class = "btn btn-primary" >Compare Addresses</a>
+<a href = "search-address" class = "btn btn-success">Single Address</a>
+<a href = "compare" class = "btn btn-success" >Compare Addresses</a>
 
 </center>
 </div>
+
+    <div class="footer">
+      <div class="container">
+         
+           <h5 id="copyright">&copy; HealthHood 2018</h5>
+           
+      </div>
+    </div>
+
 
 
 
