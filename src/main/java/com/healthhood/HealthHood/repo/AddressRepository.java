@@ -7,7 +7,7 @@ import com.healthhood.HealthHood.Entity.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Integer>{
 	
-	List<Address> findByUserid(String userid);
+	List<Address> findByUserid(Integer userid);
 
 
 }

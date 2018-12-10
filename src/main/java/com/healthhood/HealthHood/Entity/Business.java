@@ -13,8 +13,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	    private ArrayList<Category> categories;
 	    private Double distance;
 	    private String image_url;
+	    private String url;
 	    
 	   
+		public String getUrl() {
+			return url;
+		}
+
+		public void setUrl(String url) {
+			this.url = url;
+		}
+
 		public String getImage_url() {
 			return image_url;
 		}
@@ -28,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	    }
 
 	    public Business(String  id, String name, Location location, ArrayList<Category> categories,
-	            Double distance, String image_url) {
+	            Double distance, String image_url, String url) {
 	        super();
 	        this.id = id;
 	        this.name = name;
@@ -36,6 +45,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	        this.categories = categories;
 	        this.distance = distance;
 	        this.image_url = image_url;
+	        this.url = url;
 	    }
 
 	    public String  getId() {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.healthhood.HealthHood.Entity.Address;
 import com.healthhood.HealthHood.Entity.Business;
@@ -139,7 +140,8 @@ public class BusinessController {
     public ModelAndView populateResults(@RequestParam("userSearch") String userSearch, @RequestParam("userSearch2") String userSearch2) {
         Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
         Map<String, BusinessResults> brMap2 = HHS.yelpApi(userSearch2);
-       
+        int h2i = indexCalc(userSearch);
+        int h2iSecond = indexCalc(userSearch2);
         
 
         
@@ -149,13 +151,8 @@ public class BusinessController {
 
         ModelAndView mv = new ModelAndView("multiCompare", "indexResults", multH2I);
        
-        int h2i = indexCalc(userSearch);
-        String scoreMessage1 = scoreMessage;
-        mv.addObject("message", scoreMessage);
         
-        
-        int h2iSecond = indexCalc(userSearch2);
-        mv.addObject("message2", scoreMessage);
+
         
         ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
         ArrayList<Business> Groc = brMap.get("groceryResults").getResults();
@@ -172,6 +169,7 @@ public class BusinessController {
         mv.addObject("fitnessResults2", gymRec2);
         mv.addObject("groceryResults2", Groc2);
         mv.addObject("otgResults2", OTG2);
+        mv.addObject("message", scoreMessage);
         mv.addObject("index1", h2i);
         mv.addObject("index2", h2iSecond);
         mv.addObject("message2", scoreMessage);
@@ -213,6 +211,14 @@ public class BusinessController {
 		return new ModelAndView("multiCompare");
 
 	}
+	
+	@RequestMapping("/showsearches")
+	public ModelAndView showPreviousSearches() {
+	
+			return new ModelAndView("showsearchpage", "searchlist", addRepo.findByUserid(user.getUserid()));
+			}
+		
+	
 	
 	
 
