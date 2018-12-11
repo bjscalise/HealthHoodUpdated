@@ -20,11 +20,12 @@
 <center>
 
 <div class="container">
-<h2>Your Health Hood Index (H2I) is:</h2> <a href="newsearch" class="btn btn-success" id="newsearch">Search Again?</a>
+<h1>Your Health Hood Index (H2I) is:</h1>
 <br>
 <br>
-<%-- ${indexResults} --%>
 
+<h2 id="address">${address1}:</h2>
+<br>
 <h1>${index1}/5</h1>
 
 <br>
@@ -61,9 +62,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Fitness Center"></td>
     <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -84,9 +89,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Grocery Store"></td>
     <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -107,9 +116,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Healthy Fast Food"></td>
     <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -121,6 +134,8 @@
 
 <div class = "container">
 
+<h2>${address2}:</h2>
+<br>
 <h1>${index2}/5</h1>
 
 <a class="btn btn-light" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">See Why</a>
@@ -156,9 +171,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt = "Fitness Center"></td>
    <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -179,9 +198,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Grocery Store"></td>
     <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -202,9 +225,13 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Healthy Fast Food"></td>
    <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location}</td>
-    <td>${b.categories}</td>
-    <td>${b.distance * 0.000621371}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
+    <td>
+    <c:forEach var = "c" items = "${b.categories}">
+   	 ${c.title}, ${c.alias} 
+    </c:forEach>
+    </td>
+    <td>${b.formattedDistance} <p>mi</p></td>
 </tr>
 </tbody>
 </c:forEach>
@@ -255,8 +282,9 @@
 }
 
 #menu{
-position: relative;
-top: -320px;
+position: fixed;
+top: 0;
+left: 0;
 padding-left: 10px;
 
 }

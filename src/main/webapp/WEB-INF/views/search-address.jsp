@@ -28,7 +28,7 @@ ${search}
  
 <form action = "results">
 <input type="hidden" name="userid" value="${userid}"> <br>
-<input type = "text" placeholder = "Enter Address" size="35" name="userSearch">
+<input type = "text" size="35" required="true" name="userSearch" title="123 Main Street Detroit, MI 48226" placeholder="123 Main Street Detroit, MI 48226">
 
 <br>
 
@@ -77,8 +77,9 @@ ${search}
 }
 
 #menu{
-position: relative;
-top: -365px;
+position: fixed;
+top: 0;
+left: 0;
 padding-left: 10px;
 
 }

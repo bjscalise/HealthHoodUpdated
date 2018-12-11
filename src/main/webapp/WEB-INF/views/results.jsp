@@ -21,10 +21,12 @@
 
 <center>
 <div class="container">
-<h2>Your Health Hood Index (H2I) is:</h2> <h3> <a href="newsearch" class="btn btn-success" id="newsearch">Search Again?</a>
+<h1>Your Health Hood Index (H2I) is:</h1>
 <br>
 <br>
-<h1>${indexResults}/5 </h1>
+<h2>${address1}:</h2>
+<br>
+<h2>${indexResults}/5</h2>
 
 <br>
 <a class="btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">See Why</a>
@@ -249,8 +251,9 @@ ${message2}
 }
 
 #menu{
-position: relative;
-top: -115px;
+position: fixed;
+top: 0;
+left: 0;
 padding-left: 10px;
 
 }

@@ -28,8 +28,8 @@ ${search}
  
 <form action = "multipleadds">
 <%-- <input type="hidden" name="userid" value="${userid}"> <br> --%>
-<input type = "text" placeholder = "Enter address" name="userSearch">
-<input type = "text" placeholder = "Enter address" name="userSearch2">
+<input type = "text" placeholder = "123 Main Street Detroit, MI 48226" name="userSearch" required="true" size="35">
+<input type = "text" placeholder = "123 Main Street Detroit, MI 48226" name="userSearch2" required="true" size="35">
 <br>
 <input type = "submit" name = "Submit" class = "btn btn-light">
 </form> 

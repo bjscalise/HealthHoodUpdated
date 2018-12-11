@@ -99,6 +99,13 @@ public class BusinessController {
 	public ModelAndView showAllResults(@RequestParam("userSearch") String userSearch) {
 
 		Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
+		
+		try {
+			brMap = HHS.yelpApi(userSearch);
+		} catch (Exception e) {
+			return new ModelAndView("error");
+			
+		}
 
 		int h2i = indexCalc(userSearch);
 		ModelAndView mv = new ModelAndView("results", "indexResults", h2i);
@@ -111,6 +118,7 @@ public class BusinessController {
 		mv.addObject("groceryResults", Groc);
 		mv.addObject("otgResults", OTG);
 		mv.addObject("message", scoreMessage);
+		mv.addObject("address1", userSearch);
 
 		Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
 		Address address = new Address(userSearch, h2i, id);
@@ -173,6 +181,8 @@ public class BusinessController {
         mv.addObject("index1", h2i);
         mv.addObject("index2", h2iSecond);
         mv.addObject("message2", scoreMessage);
+        mv.addObject("address1", userSearch);
+        mv.addObject("address2", userSearch2);
         
         
         System.out.println("Did we make it???");
