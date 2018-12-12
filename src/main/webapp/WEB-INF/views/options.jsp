@@ -22,7 +22,7 @@
 <center>  
 
 <div class = "container" id="option">
-
+${search }
 
 
 <h1>Select Your Search Option</h1>
