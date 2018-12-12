@@ -21,7 +21,7 @@
 
 <center>
 
-<h1>Sorry, that input isn't valid!</h1>
+<h1 style="padding-top: 8em; color: white">Sorry, that input isn't valid!</h1>
 
 <a href ="newsearch" class="btn btn-success">Try Again</a>
 

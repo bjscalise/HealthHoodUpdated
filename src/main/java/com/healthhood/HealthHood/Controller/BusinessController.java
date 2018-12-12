@@ -59,15 +59,6 @@ public class BusinessController {
 		double numGR = brMap.get("fitnessResults").getResults().size();
 		double numGroc = brMap.get("groceryResults").getResults().size();
 		double numOTG = brMap.get("otgResults").getResults().size();
-
-//		double grocIndex = (numGroc / 20);
-//		double grIndex = (numGR / 20);
-//		double otgIndex = (numOTG / 20);
-		
-		  System.out.println(numGR + " "); 
-	      System.out.println(numGroc + " ");
-	      System.out.println(numOTG + " ");
-      
 	 
 	      double h2I = (((numGroc + numGR + numOTG)/60)*100);
 	
@@ -153,7 +144,7 @@ public class BusinessController {
         
 
         
-      String multH2I = "Here are your comparisons";
+        String multH2I = "Here are your comparisons";
       
       
 
@@ -169,7 +160,6 @@ public class BusinessController {
         ArrayList<Business> Groc2 = brMap2.get("groceryResults").getResults();
         ArrayList<Business> OTG2 = brMap2.get("otgResults").getResults();
         
-        System.out.println("Still here??");
         
         mv.addObject("fitnessResults", gymRec);
         mv.addObject("groceryResults", Groc);
@@ -185,15 +175,9 @@ public class BusinessController {
         mv.addObject("address2", userSearch2);
         
         
-        System.out.println("Did we make it???");
-        
         Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
         Address address = new Address(userSearch, h2i, id);
         addRepo.save(address);
-
-        System.out.println("not sure.");
-        
-//        Integer id2 = userRepo.findByEmail(user.getEmail()).getUserid();
         Address address2 = new Address(userSearch2, h2iSecond, id);
         addRepo.save(address2);
         

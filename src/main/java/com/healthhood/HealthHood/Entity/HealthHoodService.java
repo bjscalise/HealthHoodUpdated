@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 	@Component
 	public class HealthHoodService {
 		
-		//to hide the keys if we push to github
+	
 		@Value("${yelp.key}")
 	    private String yelpHelp;
 		
@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 		        
 		       // ModelAndView mv = new ModelAndView("yelp");
 		        HttpHeaders header = new HttpHeaders();
-		        header.add("Authorization", "Bearer oAovmku6u2EAhNeZyDtB7gwCeNWE_OQCGDy6q_enyGhX3Y4-ZL-6OmjDC2yi51ZmThAM8La1XBgFwezSGvdqbDkeEiZHmOFjj_E9oR8RCqZGQXz18hTvtM6gBEYBXHYx");
+		        header.add("Authorization", "Bearer " + yelpHelp);
 		        header.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 		        HttpEntity<String> entity = new HttpEntity<>("parameters", header);
 		        RestTemplate rt = new RestTemplate();

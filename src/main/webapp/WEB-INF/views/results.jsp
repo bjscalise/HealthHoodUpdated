@@ -83,7 +83,7 @@
     <tr>
     <td><img src ="${b.image_url}" height="100" width="100" alt="Grocery Store"></td>
     <td><a href="${b.url}" target="_blank">${b.name}</a></td>
-    <td>${b.location.city}, ${b.location.state}}</td>
+    <td>${b.location.city}, ${b.location.state}</td>
     <td>
     <c:forEach var = "c" items = "${b.categories}">
    	 ${c.title}, ${c.alias} 
@@ -223,7 +223,7 @@ ${message2}
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #00a86b;
+  background-color: #d3d3d3;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
