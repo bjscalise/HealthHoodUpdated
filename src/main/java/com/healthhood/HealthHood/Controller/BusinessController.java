@@ -99,6 +99,7 @@ public class BusinessController {
 		}
 
 		int h2i = indexCalc(userSearch);
+	//Index result ie H2I is being sent to the results page as an expressions language tag. This populates the score.
 		ModelAndView mv = new ModelAndView("results", "indexResults", h2i);
 
 		ArrayList<Business> gymRec = brMap.get("fitnessResults").getResults();
@@ -111,6 +112,7 @@ public class BusinessController {
 		mv.addObject("message", scoreMessage);
 		mv.addObject("address1", userSearch);
 
+	//We are referencing the userid (foreign key) here directly instead of using the one-to-many annotation in the model.
 		Integer id = userRepo.findByEmail(user.getEmail()).getUserid();
 		Address address = new Address(userSearch, h2i, id);
 		addRepo.save(address);
@@ -140,6 +142,7 @@ public class BusinessController {
         Map<String, BusinessResults> brMap = HHS.yelpApi(userSearch);
         Map<String, BusinessResults> brMap2 = HHS.yelpApi(userSearch2);
         int h2i = indexCalc(userSearch);
+        String scoreMessage1 = scoreMessage;
         int h2iSecond = indexCalc(userSearch2);
         
 
@@ -167,7 +170,7 @@ public class BusinessController {
         mv.addObject("fitnessResults2", gymRec2);
         mv.addObject("groceryResults2", Groc2);
         mv.addObject("otgResults2", OTG2);
-        mv.addObject("message", scoreMessage);
+        mv.addObject("message", scoreMessage1);
         mv.addObject("index1", h2i);
         mv.addObject("index2", h2iSecond);
         mv.addObject("message2", scoreMessage);
